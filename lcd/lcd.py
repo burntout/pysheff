@@ -12,24 +12,29 @@ def lcd(n):
     mid = '' 
     btm = ''
 
-    while n>0:
-        ctop = ''
-        cmid = '' 
-        cbtm = ''
+    #  Case n = 0 
+    if n == 0:
+        ch_begin = 0
+        ch_end = 1
         ch_begin = pos[n%10]
         ch_end = pos[(n%10) + 1]
-        ctop += t[pos[n%10]:pos[(n%10)+1]]
-        top = ctop + ' ' + top
-        cmid += m[pos[n%10]:pos[(n%10)+1]]
-        mid = cmid + ' ' + mid
-        cbtm += b[pos[n%10]:pos[(n%10)+1]]
-        btm = cbtm + ' '+ btm
-        n = n/10    
+        top = t[ch_begin:ch_end] + ' ' + top
+        mid = m[ch_begin:ch_end] + ' ' + mid
+        btm = b[ch_begin:ch_end] + ' ' + btm
+    #  All other case n > 0
+    else: 
+        while n>0:
+            ch_begin = pos[n%10]
+            ch_end = pos[(n%10) + 1]
+            top = t[ch_begin:ch_end] + ' ' + top
+            mid = m[ch_begin:ch_end] + ' ' + mid
+            btm = b[ch_begin:ch_end] + ' ' + btm
+            n = n/10    
     return top + '\n' + mid + '\n' + btm + '\n'
 
-# for i in range(20):
-#     print lcd(i)
+for i in range(20):
+    print lcd(i)
 
 
-print lcd(100)
+#print lcd(100)
 
